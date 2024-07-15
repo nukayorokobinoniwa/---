@@ -222,5 +222,47 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
     F(x) = P(X\leq x) = \int_{-\infty}^x f(t)dt\tag{2,9}
 \end{equation}
 なお密度関数や分布関数による確率的挙動を\textcolor{red}{確率分布}と呼んでいるが、確率分布については3節にて触れる。
+\subsection{期待値と平均と分散}
+\subsubsection{平均そして期待値}
+\textcolor{blue}{離散型}の平均$\mu$について以下のように定義する。
+\begin{equation}
+    \mu = \sum_{i= 1,2,\cdots} x_if(x_i)\tag{2,10}
+\end{equation}
 
+実例を挙げてみよう。サイコロの出目の平均を計算すると3.5となる。
+
+\textcolor{blue}{連続型}の平均$\mu$について以下のように定義する。なお確率変数$X$が取りうる領域を$\mathcal{X} $とする。
+\begin{equation}
+    \mu = \int_\mathcal{X}xf(x)dx\tag{2,11}
+\end{equation}
+そしてこれら平均を総じて確率変数$X$の\textcolor{red}{期待値}という。期待値は$E[x]$で表される。
+なお$E[X]$は線形性を持っており場合によっては計算が楽である。
+\subsubsection{分散}
+確率変数のばらつきを捉えるものに\textcolor{red}{分散}がある。これは確率変数$X$の平均$\mu$からの離れ具合を2乗に基づいて平均的に測るものである。分散$sigma^2=V(x)$は次式で定義する。
+\begin{equation}
+    \sigma^2=V[x]=E[(X-\mu)^2]\tag{2,12}
+\end{equation}
+これは\textcolor{blue}{離散型},\textcolor{blue}{連続型}どちらでも使うことができる。ただし期待値はそれぞれ対応する式で用いること。
+
+\subsubsection{標準偏差}
+分散はばらつきの尺度として優秀な一方で2乗しているため元の確率変数と単位が異なる。よって単位を合わせるために分散の平方根を\textcolor{red}{標準偏差}とする。
+\subsubsection{k次モーメント}
+一般的に$E[X^k]$を\textcolor{red}{k次モーメント}という。そして$E[(X-\mu)^k]$を\textcolor{red}{k次の中心モーメント}という。そして
+今まで出たものをまとめると、平均は1次のモーメント、分散は2次の中心モーメントである。
+
+ここで期待値が線形であり、$E[X]=\mu$を利用することで平均と分散に関して次の関係性を導くことができる。
+\begin{eqnarray*}
+    \sigma^2 &=& E[(X-\mu)^2]\\
+    &=& E[X^2-2\mu X +\mu-2]\\
+    &=& E[X^2]-2\mu E[X]+E[\mu^2]\\
+    &=& E[X^2]-\mu^2
+\end{eqnarray*}
+\subsubsection{標準化}
+世の中の無数の確率変数が同じ平均と標準偏差を持つように確率変数を変換することを\textcolor{red}{標準化}と呼ぶ。具体的に以下のように変換する。なお$Z$は確率変数である。
+\begin{equation}
+    Z=\frac{X-\mu}{\sigma}\tag{2,13}
+\end{equation}
+このとき平均$E[Z]$は0、分散$V[Z]$は1になる。
+
+逆に標準化されている確率変数$Z$に対して、$X=\mu+\sigma Z$と変換すると、$E[X]=\mu$と$V[x]=\sigma^2$が簡単に得られる。
 \end{document}
