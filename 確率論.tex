@@ -265,4 +265,34 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 このとき平均$E[Z]$は0、分散$V[Z]$は1になる。
 
 逆に標準化されている確率変数$Z$に対して、$X=\mu+\sigma Z$と変換すると、$E[X]=\mu$と$V[x]=\sigma^2$が簡単に得られる。
+
+\subsection{多次元確率変数と同時確率分布と周辺確率分布}
+\subsubsection{多次元確率変数}
+まず1次元の確率変数$X_1,\cdots,X_k$をまとめた確率変数$X=(X_1,\cdots,X_k)$を\textcolor{red}{多次元確率変数}という。これはベクトルである。
+\subsubsection{同時確率分布}
+例えば袋の中に赤、青、黄の3色のボールが入ってることを考える。そしてそのボールには1から4までの数字が書かれている。
+この時それぞれのボールの確率を求めるにはボールの色という確率変数とボールの数字という確率変数の2種類を考慮しなければならない。
+
+このようにいくつかの確率変数を同時に扱うときの確率分布を\textcolor{red}{同時確率分布}という。
+
+\textcolor{blue}{離散型}の場合、次式で示される。
+\begin{equation}
+    f(x_i,y_j\cdots)=P(X=x_i,Y=y_j\cdots)\tag{2,14}
+\end{equation}
+\textcolor{blue}{連続型}の場合、次式で示される。
+\begin{equation}
+    f(a<X\leq b,c<Y\leq d\cdots)=\int_a^b\int_c^d\cdot f(x,y,\cdots) dxdy\cdots\tag{2,15}
+\end{equation}
+\subsubsection{周辺確率分布}
+\textcolor{red}{周辺確率}とは、ただ1つだけの事象が起こる確率である。
+つまり1つの変数を固定し、もう1つの変数のパターンをすべて足せばいい。
+\textcolor{blue}{離散型}の場合、次式を例とする。
+\begin{equation}
+    P(X_1=x_1)=\sum_{x_2}\sum_{X_3}\cdots P(X_1 = x_1,X_2 = x_2, X_3 = x_3\cdots)\tag{2,16}
+\end{equation}
+要は1つの確率変数を固定して後ひたすら足しているだけなのだ。
+\textcolor{blue}{連続型}の場合、次式を例とする。
+\begin{equation}
+    P(X_1\leq x_1,-\infty < X_2 < \infty \cdots) = \int_{-\infty}^x\int_{-\infty}^\infty\cdots f(x_1,c_2,\cdots)dx_1dx_2\cdots
+\end{equation}
 \end{document}
