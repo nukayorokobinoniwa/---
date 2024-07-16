@@ -1,6 +1,6 @@
 \documentclass[a4paper,10pt]{jarticle}
 \usepackage{amsmath}
-\usepackage{mathtools}
+\usepackage[legacycolonsymbols]{mathtools}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{here}
 \usepackage{longtable}
@@ -14,7 +14,9 @@
 \setlength{\oddsidemargin}{-3.5mm}
 \begin{document}
 \title{確率論まとめ}
+\date{}
 \maketitle
+このまとめは個人的にまとめたものであり厳密性を考えていない他、間違えがあるかもしれない。
 \section{確率空間}
 \subsection{標本空間と事象}
 \subsubsection{導入}
@@ -322,7 +324,7 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 \textcolor{red}{チェビシェフの不等式}を紹介する。
 確率変数$X$における平均と分散を用いる。このとき任意の$\varepsilon >0$に対して、次が成り立つ。
 \begin{equation}
-    P[(|X-\mu\geq\varepsilon)]\leq \frac{\sigma^2}{\varepsilon^2}\tag{2,20}
+    P[(|X-\mu|\geq\varepsilon)]\leq \frac{\sigma^2}{\varepsilon^2}\tag{2,20}
 \end{equation}
 この不等式は、特定の値以下もしくは以上の累積分布関数の最大値を求めることができる。
 \subsubsection{コーシー・シュバルツの不等式}
@@ -384,8 +386,52 @@ $Y$はもちろん確率変数となる。この時、この事象の組み合�
 \subsubsection{幾何分布}
 ここで一度話をベルヌーイ試行まで戻す。初めて$X=1$となるまでの試行回数$Y$の確率分布を\textcolor{red}{幾何分布}と呼ぶ。このとき次式で密度関数は示される。
 \begin{equation}
-    P(Y=y) = (1-\theta)^y-1\theta\ \ \ \ \ \ \ (k=1,2,\cdots)\tag{3,6}
+    P(Y=y) = (1-\theta)^{y-1}\theta\ \ \ \ \ \ \ (k=1,2,\cdots)\tag{3,6}
 \end{equation}
+\subsection{\textcolor{blue}{連続型}確率分布}
+\subsubsection{一様分布}
+\textcolor{blue}{連続型}確率変数$X$が区間$(a,b)$の間で、一様にどれかの値をとる可能性があるとき、
+\begin{equation}
+    f(x)=\frac{1}{b-a}\tag{3,7}
+\end{equation}
+この密度関数を持つ連続型確率変数$X$は区間$(a,b)$上の一様分布に従うといわれる。これを$X\sim U(a,b)$と表記する。
+なお期待値は、
+\begin{equation}
+    E(X)=\frac{b+a}{2}\tag{3,8}
+\end{equation}
+分散は、
+\begin{equation}
+    V(X)=\frac{(b-a)^2}{12}\tag{3,9}
+\end{equation}
+となる。
+\subsubsection{指数分布}
+ある期間に平均して$\lambda$回起こる現象が、次起こるまでの期間$X$が指数分布に従うとき、$X=x$となる確率密度関数は次式で示される。
+\begin{equation}
+    f(x) = \lambda e^{-\lambda x}\tag{3,10}
+\end{equation}
+この時この\textcolor{blue}{連続型}確率分布を\textcolor{red}{指数分布}と呼ぶ。そしてこの状況を$X\sim Ex(\lambda)$と表記する。
+なお期待値と分散は次のようになります。
+\begin{equation}
+    E(X)=\frac{1}{\lambda}\tag{3,11}
+\end{equation}
+\begin{equation}
+    V(x)=\frac{1}{\lambda^2}\tag{3,12}
+\end{equation}
+\subsubsection{正規分布}
+確率変数$X$が次の密度関数を持つとき、\textcolor{red}{正規分布}に従うと言われ$X\sim N(\mu,\sigma^2)$とあらわされる。
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\tag{3,13}
+\end{equation}
+急に式が出てきて混乱しかねないこの正規分布はどんな特徴があるの以下に示す。
+\begin{itemize}
+    \item 平均値/最頻値/中央値が一致する。
+    \item 平均値を中心に左右対称である。
+    \item x軸が漸近線となる。
+    \item 分散が大きくなると、曲線の山は低くなり、左右に広がって平らになる。
+\end{itemize}
+\subsection{モーメント母数関数}
+
+
 
 
 
