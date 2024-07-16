@@ -348,12 +348,30 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 
 実例を見てみよう。サイコロを振ったときに出る目の確率を考える。確率変数$X$は1から6までの値をとる。そして確率変数にかかわらず確率は常に$\frac{1}{6}$となる。
 
+一様分布における確率分布の平均と分散を考える。なお標本空間$\Omega={1,2,\cdots,n}$とする。
+まず期待値だが
+\begin{equation}
+    E[X] = 1*p+2*p+\cdots n*p = \frac{n(n+1)}{2}p = \frac{n+1}{2}\tag{3,2}
+\end{equation}
+次に分散だが、
+\begin{eqnarray*}
+    V[X] &=& E[X^2]-(E[x])^2\\
+    &=& \frac{n(n+1)(2n+1)}{6}p-(E[n])^2\\
+    &=& \frac{2n^2+3n+1}{6}-\frac{n^2+2n+1}{4}\\
+    &=& \frac{4n^2+6n+2}{12}-\frac{3n^2+6n+3}{12}\\
+    &=&\frac{n^2-1}{12}
+\end{eqnarray*}
+よって
+\begin{equation}
+    V[X] = \frac{n^2-1}{12}\tag{3,3}
+\end{equation}
+
 \subsubsection{ベルヌーイ分布}
 まず確率変数が2つの値0と1しかとらないという状況を考える。
 ここで$P(1)=\theta$と定義すると、$P(0)=1-\theta$となる。もちろん$0<\theta < 1$となる。
 このときこの確率は次のように表現できる。
 \begin{equation}
-    P(x) = \theta^x (1-\theta)^{1-x}\tag{3,2}
+    P(x) = \theta^x (1-\theta)^{1-x}\tag{3,4}
 \end{equation}
 この密度関数をもつ\textcolor{blue}{離散型}確率変数$x$は、\textcolor{red}{ベルヌーイ分布}に従うという。
 
@@ -362,14 +380,62 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
     P(x) = 0.1^x(0.9)^{1-x}
 \end{equation*}
 となる。
+
+ベルヌーイ試行における平均と分散を求める。まず標本空間は0と1の2種類である。
+まず期待値だが、
+\begin{equation}
+    E[x] = \theta\tag{3,5}
+\end{equation}
+次に分散だが、
+\begin{equation}
+    V[x] = \theta -\theta^2= \theta(1-\theta)\tag{3,6}
+\end{equation}
+ここは比較的簡単に計算できる。
 \subsubsection{2項分布}
 ここでベルヌーイ分布をとるような試行、つまりベルヌーイ試行を複数回繰り返すような状況を考える。
 互いに独立したベルヌ―イ試行を$n$回繰り返したとき、ベルヌーイ試行の確率変数$X$が1となるような状況が$y$回起こった時を考える。
 $Y$はもちろん確率変数となる。この時、この事象の組み合わせは$nCy = \frac{n!}{(n-y)!y!}$であり、
 それぞれが起きる確率は$\theta^y (1-\theta)^{n-y}$となるため、
 \begin{equation}
-    f(y) = P(Y=y)= \frac{n!}{(n-y)!y!}\theta^y (1-\theta)^{n-y}\ \ \ \ \ \ \ (y=0,1,\cdots, n)\tag{3,3}
+    f(y) = P(Y=y)= \frac{n!}{(n-y)!y!}\theta^y (1-\theta)^{n-y}\ \ \ \ \ \ \ (y=0,1,\cdots, n)\tag{3,7}
 \end{equation}
+さて2項分布における期待値と分散を計算する。
+なおこの計算は非常に長いため最悪結果だけ見ること。
+まず標本空間は$N$回の施行で$2^N$回存在する。
+さてこの場合の平均を考える。
+\begin{eqnarray*}
+    E[X]&=&\sum_{k=0}^n k\times \frac{n!}{(n-k)!k!}\theta^k (1-\theta)^{n-k}\\
+    &=& \sum_{k=1}^n \frac{n!}{(n-k)!(k-1)!}\theta^k (1-\theta)^{n-k}\\
+    &=& \sum_{k=1}^n n\frac{(n-1)!}{(n-k)!\{(n-1)-(n-k)\}!}\theta\cdot\theta^{n-1}(1-\theta)^{\{(n-1)-(k-1)\}}\\
+    &=& n\theta\sum_{k=1}^n \frac{(n-1)!}{(n-k)!\{(n-1)-(n-k)\}!}\theta^{n-1}(1-\theta)^{\{(n-1)-(k-1)\}}\\
+    &=& n\theta\{(\theta+(1-\theta))\}^{n-1}\\
+    &=& n\theta
+\end{eqnarray*}
+よって
+\begin{equation}
+    E[x] = n\theta\tag{3,8}
+\end{equation}
+後述するモーメント母関数を使用することが簡単である。
+
+次に分散を考える。
+分散は次のように変形する。
+\begin{eqnarray*}
+    V[X]&=&E[X^2]-(E[X])^2\\
+\end{eqnarray*}
+ここで、
+\begin{eqnarray*}
+    E[X^2] &=& \sum_{k=0}^n k^2\times \frac{n!}{(n-k)!k!}\theta^k (1-\theta)^{n-k}\\
+    &=& \sum_{k=0}^n k(k-1)\frac{n!}{(n-k)!k!}\theta^k (1-\theta)^{n-k}+\sum_{k=0}^n k\frac{n!}{(n-k)!k!}\theta^k (1-\theta)^{n-k}\\
+    &=& \sum_{k=0}^n n\cdot(n-1)\frac{n!}{(k-2)!\{(n-2)-(k-2)\}!}\theta^2\cdot \theta^{n-2}(1-\theta)^{\{(n-2)-(k-2)\}}+n\theta\\
+    &=& n(n-1)\theta^2+n\theta\\
+    &=& n^2\theta^2-n\theta^2+n\theta\\
+    &=& n^2\theta^2+n\theta(1-\theta)\\
+\end{eqnarray*}
+よって
+\begin{equation}
+    V[X] = n^2\theta^2+n\theta(1-\theta)-n^2\theta^2 = n\theta(1-\theta)\tag{3,9}
+\end{equation}
+もちろんこれもモーメント母関数を使用する方が簡単である。
 \subsubsection{ポアソン分布}
 二項分布をさらに発展させて考えてみる。ベルヌーイ試行の確率変数$X$が1となる確率がとても小さい状況。しかしながら試行回数$n$は膨大であるという状況を考える。この時$y$回確率変数$X=1$となる試行が発生する確率を求める。
 
