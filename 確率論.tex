@@ -293,6 +293,48 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 要は1つの確率変数を固定して後ひたすら足しているだけなのだ。
 \textcolor{blue}{連続型}の場合、次式を例とする。
 \begin{equation}
-    P(X_1\leq x_1,-\infty < X_2 < \infty \cdots) = \int_{-\infty}^x\int_{-\infty}^\infty\cdots f(x_1,c_2,\cdots)dx_1dx_2\cdots
+    P(X_1\leq x_1,-\infty < X_2 < \infty \cdots) = \int_{-\infty}^x\int_{-\infty}^\infty\cdots f(x_1,c_2,\cdots)dx_1dx_2\cdots\tag{2,17}
 \end{equation}
+\subsection{共分散}
+2つの確率変数$X$と$Y$の関係を表す量として\textcolor{red}{共分散}を次式で定義する。
+\begin{equation}
+    \sigma_{xy}=Cov[X,Y]=E[(X-\mu_x)(Y-\mu_y)] \tag{2,18}
+\end{equation}
+また共分散の代わりに\textcolor{red}{相関係数}に着目することもある。相関係数は次式で定義される。
+\begin{equation}
+    \rho_{xy} = Corr[X,Y] = \frac{Cov[X,Y]}{\sqrt{V[X]V[Y]}}\tag{2,19}
+\end{equation}
+\subsection{確率変数の和の平均と分散}
+確率変数の和$X+Y$における平均と分散は次式で表すことができる。
+\begin{itemize}
+    \item 和：$E[X+Y] = E[X]+E[Y]$
+    \item 分散: $V[X+Y] = V[X]+V[Y] + 2Cov[X,Y]$
+\end{itemize}
+なお分散については以下に導出を記載しておく。
+\begin{eqnarray*}
+    V[X+Y] &=& E[\{(X+Y)-(\mu_x+\mu_Y)\}^2]\\
+            &=& E[\{(X-\mu_x)+(Y-\mu_Y)\}^2]\\
+            &=& E[(X-\mu_x)^2]+E[(Y-\mu_y)^2]+2E[(X-\mu_x)(Y-\mu_y)]\\
+            &=& V[X]+V[Y]+2Cov[X,Y]
+\end{eqnarray*}
+\subsection{確率不等式}
+\subsubsection{チェビシェフの不等式}
+\textcolor{red}{チェビシェフの不等式}を紹介する。
+確率変数$X$における平均と分散を用いる。このとき任意の$\varepsilon >0$に対して、次が成り立つ。
+\begin{equation}
+    P[(|X-\mu\geq\varepsilon)]\leq \frac{\sigma^2}{\varepsilon^2}\tag{2,20}
+\end{equation}
+この不等式は、特定の値以下もしくは以上の累積分布関数の最大値を求めることができる。
+\subsubsection{コーシー・シュバルツの不等式}
+次に\textcolor{red}{コーシー・シュバルツの不等式}を紹介する。
+コーシー・シュバルツの不等式は確率変数$X$と$Y$の分散と共分散との間に次の不等式が成立するというものである。
+\begin{equation}
+    Cov[X,Y] ^2,\leq V[X]V[Y]\tag{2,21}
+\end{equation}
+\subsection{条件付密度関数}
+確率変数$X=x$、$Y=y$の時の\textcolor{red}{条件付密度関数}$f_{Y|X}(y|x)$を次式で定義する。
+\begin{equation}
+    f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}\tag{2,22}
+\end{equation}
+
 \end{document}
