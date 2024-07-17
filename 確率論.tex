@@ -446,13 +446,44 @@ $Y$はもちろん確率変数となる。この時、この事象の組み合�
 \end{equation}
 この時の2項分布の密度関数の極限として次が求めることができる。
 \begin{equation}
-    f(Y) = P(Y = y)=\frac{\lambda^y}{y!}e^{-y}\tag{3,5}
+    f(Y) = P(Y = y)=\frac{\lambda^y}{y!}e^{-\lambda}\tag{3,10}
 \end{equation}
 この密度関数を持つ\textcolor{blue}{離散型}確率変数$Y$は、\textcolor{red}{ポアソン分布}に従うといわれる。
+
+ポアソン分布においても平均と分散を考える。
+まず平均を求める。なお計算についてはマクローリン展開を用いてることを注意してほしい。
+\begin{eqnarray*}
+    E[X] &=& \sum_{y=0}^\infty y\frac{\lambda^y}{y!}e^{-\lambda}\\
+        &=&\sum_{y=0}^\infty \lambda e^{-\lambda}\frac{\lambda^{y-1}}{(y-1)!}\\
+        &=& \lambda e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y-1}}{(y-1)!}\\
+        &=& \lambda e^{-\lambda}e^{\lambda}\\
+        &=& \lambda
+\end{eqnarray*}
+この結果より
+\begin{equation}
+    E[X] = \lambda \tag{3,11}
+\end{equation}
+次に分散を求める。
+\begin{eqnarray*}
+    V[X] &=& E[X^2]-(E[x])^2
+\end{eqnarray*}
+ここで、
+\begin{eqnarray*}
+    E[X^2] &=& \sum_{y=0}^\infty y(y-1)\frac{\lambda^y}{y!}e^{-\lambda}+\sum_{y=0}^\infty y\frac{\lambda^y}{y!}e^{-\lambda}\\
+        &=&\sum_{y=0}^\infty \lambda^2 e^{-\lambda}\frac{\lambda^{y-2}}{(y-2)!}+\lambda\\
+        &=& \lambda^2 e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y-2}}{(y-2)!}+\lambda\\
+        &=& \lambda^2 e^{-\lambda}e^{\lambda}+\lambda\\
+        &=& \lambda^2+\lambda
+\end{eqnarray*}
+よって、
+\begin{equation}
+    V[X]  = \lambda^2+\lambda-\lambda^2=\lambda\tag{3,12}
+\end{equation}
+
 \subsubsection{幾何分布}
 ここで一度話をベルヌーイ試行まで戻す。初めて$X=1$となるまでの試行回数$Y$の確率分布を\textcolor{red}{幾何分布}と呼ぶ。このとき次式で密度関数は示される。
 \begin{equation}
-    P(Y=y) = (1-\theta)^{y-1}\theta\ \ \ \ \ \ \ (k=1,2,\cdots)\tag{3,6}
+    P(Y=y) = (1-\theta)^{y-1}\theta\ \ \ \ \ \ \ (k=1,2,\cdots)\tag{3,13}
 \end{equation}
 \subsection{\textcolor{blue}{連続型}確率分布}
 \subsubsection{一様分布}
