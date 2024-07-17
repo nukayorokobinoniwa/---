@@ -489,31 +489,67 @@ $Y$はもちろん確率変数となる。この時、この事象の組み合�
 \subsubsection{一様分布}
 \textcolor{blue}{連続型}確率変数$X$が区間$(a,b)$の間で、一様にどれかの値をとる可能性があるとき、
 \begin{equation}
-    f(x)=\frac{1}{b-a}\tag{3,7}
+    f(x)=\frac{1}{b-a}\tag{3,14}
 \end{equation}
 この密度関数を持つ連続型確率変数$X$は区間$(a,b)$上の一様分布に従うといわれる。これを$X\sim U(a,b)$と表記する。
 なお期待値は、
 \begin{equation}
-    E(X)=\frac{b+a}{2}\tag{3,8}
+    E(X)=\frac{b+a}{2}\tag{3,15}
 \end{equation}
 分散は、
 \begin{equation}
-    V(X)=\frac{(b-a)^2}{12}\tag{3,9}
+    V(X)=\frac{(b-a)^2}{12}\tag{3,16}
 \end{equation}
 となる。
+導出を以下に示す。
+\begin{eqnarray*}
+    E(X) &=& \int_a^b \frac{1}{b-a}xdx\\
+        &=& \left[\frac{x^2}{2(b-a)}\right]_a^b\\
+        &=& \frac{(b+a)(b-a)}{2(b-a)}\\
+        &=& \frac{b+a}{2}
+\end{eqnarray*}
+\begin{eqnarray*}
+    E(X^2) &=& \int_a^b \frac{1}{b-a}x^2dx\\
+    &=& \left[\frac{x^3}{3(b-a)}\right]_a^b\\
+    &=& \frac{(b^3-a^3)}{3(b-a)}\\
+    &=& \frac{b^2+ab+a^2}{3}
+\end{eqnarray*}
+\begin{eqnarray*}
+    V(X) &=& \frac{b^2+ab+a^2}{3}-\frac{a^2+2ab+b^2}{4}\\
+    &=& \frac{b^2-2ab+a^2}{12}\\
+    &=& \frac{(b-a)^2}{12}
+\end{eqnarray*}
 \subsubsection{指数分布}
 ある期間に平均して$\lambda$回起こる現象が、次起こるまでの期間$X$が指数分布に従うとき、$X=x$となる確率密度関数は次式で示される。
 \begin{equation}
-    f(x) = \lambda e^{-\lambda x}\tag{3,10}
+    f(x) = \lambda e^{-\lambda x}\tag{3,17}
 \end{equation}
 この時この\textcolor{blue}{連続型}確率分布を\textcolor{red}{指数分布}と呼ぶ。そしてこの状況を$X\sim Ex(\lambda)$と表記する。
 なお期待値と分散は次のようになります。
 \begin{equation}
-    E(X)=\frac{1}{\lambda}\tag{3,11}
+    E(X)=\frac{1}{\lambda}\tag{3,18}
 \end{equation}
 \begin{equation}
-    V(x)=\frac{1}{\lambda^2}\tag{3,12}
+    V(X)=\frac{1}{\lambda^2}\tag{3,19}
 \end{equation}
+これも導出を以下に示す。
+\begin{eqnarray*}
+    E(X) &=& \int_0^\infty x\lambda e^{-\lambda x}dx \\
+    &=& \left[x(-e^{-\lambda x})\right]_0^\infty -\int_0^\infty(-e^{-\lambda x})dx\\
+    &=& 0-0+\left[-\frac{e^{-\lambda x}}{\lambda}\right]_0^\infty\\
+    &=& 0-(-\frac{1}{\lambda})\\
+    &=& \frac{1}{\lambda}
+\end{eqnarray*}
+\begin{eqnarray*}
+    E(X^2)&=& \int_0^\infty x^2\lambda e^{-\lambda x}dx \\
+    &=& \left[x^2(-e^{-\lambda x})\right]_0^\infty -2\int_0^\infty x(-e^{-\lambda x})dx\\
+    &=& 0+\frac{2}{\lambda^2}\\
+    &=& \frac{2}{\lambda^2}\\
+\end{eqnarray*}
+\begin{eqnarray*}
+    V(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2}\\
+    &=& \frac{1}{\lambda^2}
+\end{eqnarray*}
 \subsubsection{正規分布}
 確率変数$X$が次の密度関数を持つとき、\textcolor{red}{正規分布}に従うと言われ$X\sim N(\mu,\sigma^2)$とあらわされる。
 \begin{equation}
