@@ -631,8 +631,155 @@ $e^{tx}$が等比数列であることに注目して、
 \begin{equation}
     V[X] = E[X^2]-(E[X])^2 = \theta (1-\theta)\tag{3,26}
 \end{equation}
+\subsubsection{二項分布}
+まずモーメント母関数を求める。２項定理を用いて、
+\begin{eqnarray*}
+    \psi(x) &=& E[e^{tX}]\\
+    &=& \sum_{x=0}{n} e^{tx}\frac{n!}{x!(n-X)!}p^x(1-p)n-x\\
+    &=&\sum_{x=0}{n} \frac{n!}{x!(n-X)!}(pe^t)^x(1-p)n-x\\
+    &=& (pe^t + 1 - p)^n
+\end{eqnarray*}
+よってモーメント母関数は、
+\begin{equation}
+    \psi(x) =(pe^t + 1 - p)^n\tag{3,27}
+\end{equation}
+ここでモーメント母関数を用いて平均を求める。
+\begin{eqnarray*}
+    E[X] &=& \frac{d\psi(x)}{dt}\\
+    &=& n(p^et + 1 -p)^{n-1}pe^t\\
+    &\rightarrow& np(t\rightarrow 0)
+\end{eqnarray*}
+この結果より
+\begin{equation}
+    E[x] = np \tag{3,28}
+\end{equation}
+次に分散を求める。ために$E[X^2]$を求める。
+\begin{eqnarray*}
+    E[x^2] &=& \frac{d^2\psi(x)}{dt^2}\\
+           &=& n(n-1)(pe^t+1-p)^{n-2}p^2e^{2t}+n(p^et + 1 -p)^{n-1}pe^t\\
+           &\rightarrow& n(n-1)p^2+np(t\rightarrow 0)\\
+           &=& n^2p^2-np^2+np
+\end{eqnarray*}
+よって、
+\begin{equation}
+    V[x]= n^2p^2-np^2+np -n^2p^2=np(1-p)\tag{3,29}
+\end{equation}
+このようにモーメント母関数さえ求めることができれば平均や分散は簡単に求めることができる。
+\subsubsection{ポアソン分布}
+ポアソン分布におけるモーメント母関数を求める。
+マクローリン展開を用いて求める。
+\begin{eqnarray*}
+    \psi(x) &=& \sum_{y=0}^\infty e^{tx}\frac{\lambda^x}{x!}e^{-\lambda}\\
+    &=& e^{-\lambda}\sum_{y=0}^\infty e^{tx}\frac{\lambda^x}{x!}\\
+    &=& e^{-\lambda} e^{e^t\lambda}\\
+    &=& e^{\lambda(e^t-1)}
+\end{eqnarray*}
+よって、
+\begin{equation}
+    \psi(x) = e^{\lambda(e^t-1)}\tag{3,30}
+\end{equation}
+この結果をもとに期待値と分散を求める。
+\begin{eqnarray*}
+    E[X] &=& \frac{d\psi(x)}{dt}\\
+    &=&  \lambda e^t e^{\lambda(e^t-1)}\\
+    &\rightarrow& \lambda(t\rightarrow 0)
+\end{eqnarray*}
+よって、
+\begin{equation}
+    E[x] = \lambda \tag{3,31}
+\end{equation}
+分散のための$E[x^2]$を求める。
+\begin{eqnarray*}
+    E[x^2] &=& \frac{d^2\psi(x)}{dt^2}\\
+        &=& \lambda e^\lambda(e^t-1)e^t + \lambda^2e^te^\lambda(e^t-1)\\
+        &\rightarrow& \lambda^2 + \lambda (t\rightarrow 0)
+\end{eqnarray*}
+よって分散は
+\begin{equation}
+    V[x]=\lambda^2+\lambda -\lambda^2 =\lambda \tag{3,32}
+\end{equation}
+\subsubsection{\textcolor{blue}{連続型}一様分布}
 
+モーメント母関数は次の通りである。
+\begin{eqnarray*}
+    \psi(x) &=& \int_a^b \frac{1}{b-a}e^{tx}dx\\
+    &=& \left[\frac{e^tx}{t(b-a)}\right]_a^b\\
+    &=& \frac{e^{tb}-e^{ta}}{t(b-a)}
+\end{eqnarray*}
+よって
+\begin{equation}
+    \psi(x) = \frac{e^{tb}-e^{ta}}{t(b-a)}\tag{3,31}
+\end{equation}
+次に平均と分散だがロピタルの定理を使うためめんどくさいため省略する。
+\subsubsection{指数分布}
 
+指数分布におけるモーメント母関数を求める。なお$t-\lambda <0$ということとする。($t\geq 0$では母関数モーメントは存在しない)
+\begin{eqnarray*}
+    \psi(x) &=&\int_0^\infty e^{tx}\lambda e^{-\lambda x}\\
+    &=& \lambda\left[\frac{1}{t-\lambda}e^{(t-\lambda)x}\right]\\
+    &=& \frac{\lambda}{t-\lambda}(0-1)\\
+    &=& \frac{\lambda}{\lambda - t}
+\end{eqnarray*}
+よって、
+\begin{equation}
+    \psi(x)  = \frac{\lambda}{\lambda - t}\tag{3,32}
+\end{equation}
+ここから平均求める
+\begin{eqnarray*}
+    E[X] &=& \frac{d\psi(x)}{dt}\\
+    &=& \frac{\lambda}{(\lambda-t)^2}\\
+    &\rightarrow&\frac{1}{\lambda}(t\rightarrow 0)\\
+\end{eqnarray*}
+よって
+\begin{equation}
+    E[X] = \frac{1}{\lambda}\tag{3,33}
+\end{equation}
+次に分散を求める。
+\begin{eqnarray*}
+    E[x^2] &=& \frac{d^2\psi(x)}{dt^2}\\
+    &=& \frac{2\lambda(\lambda-t)}{(\lambda-t)^4}\\
+    &=& \frac{2\lambda}{(\lambda-t)^3}\\
+    &\rightarrow&\frac{2}{\lambda^2}(t\rightarrow 0)
+\end{eqnarray*}
+よって、
+\begin{equation}
+    V[X] = \frac{2}{\lambda^2}-\frac{1}{\lambda^2} =\frac{1}{\lambda^2}\tag{3,33}
+\end{equation}
+\subsubsection{正規分布}
+正規分布におけるモーメント母関数を求める。
+\begin{eqnarray*}
+    \psi(x) &=& \int_{-\infty}^\infty e^{xt}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+        &=& \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2-2x\mu+\mu^2-2\sigma^2xt}{2\sigma^2}}\\
+        &=& \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2+\mu^2+2\mu\sigma^2t+\sigma^4t^2-2x\mu-2x\sigma^2t-2\mu\sigma^2t-\sigma^4t^2}{2\sigma^2}}\\
+        &=& \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-(\mu+\sigma^2t))}{2\sigma^2}+\mu t +\frac{\sigma^2t^2}{2}}\\
+        &=& e^{\mu t+\frac{\sigma^2t^2}{2}}\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-(\mu+\sigma^2t))}{2\sigma^2}}
+\end{eqnarray*}
+ここで$\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-(\mu+\sigma^2t))}{2\sigma^2}}$は平均を$\mu+\sigma^2t$とみたてた新たな正規分布における。全標本空間の累積分布関数であるとする。
+このとき全確率は1であるため、
+\begin{equation}
+    \psi(x) = e^{\mu t+\frac{\sigma^2t^2}{2}}\tag{3,34}
+\end{equation}
+これを用いて期待値と分散を求める。
+\begin{eqnarray*}
+    E[X] &=& \frac{d\psi(x)}{dt}\\
+    &=& (\mu+\sigma^2t)e^{\mu t+\frac{\sigma^2t^2}{2}}\\
+    &\rightarrow&(\mu+0)\times 1(t\rightarrow 0)\\
+    &=& \mu
+\end{eqnarray*}
+よって、
+\begin{equation}
+    E[X] = \mu\tag{3,35}
+\end{equation}
+分散は、
+\begin{eqnarray*}
+    E[x^2] &=& \frac{d^2\psi(x)}{dt^2}\\
+    &=& (\sigma^2)e^{\mu t+\frac{\sigma^2t^2}{2}}+(\mu+\sigma^2t)^2e^{\mu t+\frac{\sigma^2t^2}{2}}\\
+    &\rightarrow& \sigma^2+\mu^2(t\rightarrow 0)
+\end{eqnarray*}
+よって、
+\begin{equation}
+    V[X] = \sigma^2 + \mu^2 - \mu^2 = \sigma^2 \tag{3,36}
+\end{equation}
 \section{中心極限定理}
 \subsection{大数の定理}
 母平均$\mu$である集団から標本を抽出する場合、試行回数が大きくなるについて、標本平均は母平均$\mu$に近づくという定理を\textcolor{red}{大数の定理}と呼ぶ。
