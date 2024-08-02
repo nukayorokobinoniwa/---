@@ -7,6 +7,7 @@
 \usepackage{url}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{amsfonts}
 \setlength{\textwidth}{165mm}
 \setlength{\marginparwidth}{40mm}
 \setlength{\textheight}{225mm}
@@ -240,7 +241,7 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 そしてこれら平均を総じて確率変数$X$の\textcolor{red}{期待値}という。期待値は$E[x]$で表される。
 なお$E[X]$は線形性を持っており場合によっては計算が楽である。
 \subsubsection{分散}
-確率変数のばらつきを捉えるものに\textcolor{red}{分散}がある。これは確率変数$X$の平均$\mu$からの離れ具合を2乗に基づいて平均的に測るものである。分散$sigma^2=V(x)$は次式で定義する。
+確率変数のばらつきを捉えるものに\textcolor{red}{分散}がある。これは確率変数$X$の平均$\mu$からの離れ具合を2乗に基づいて平均的に測るものである。分散$\sigma^2=V(x)$は次式で定義する。
 \begin{equation}
     \sigma^2=V[x]=E[(X-\mu)^2]\tag{2,12}
 \end{equation}
@@ -255,7 +256,7 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 ここで期待値が線形であり、$E[X]=\mu$を利用することで平均と分散に関して次の関係性を導くことができる。
 \begin{eqnarray*}
     \sigma^2 &=& E[(X-\mu)^2]\\
-    &=& E[X^2-2\mu X +\mu-2]\\
+    &=& E[X^2-2\mu X +\mu^2]\\
     &=& E[X^2]-2\mu E[X]+E[\mu^2]\\
     &=& E[X^2]-\mu^2
 \end{eqnarray*}
@@ -290,12 +291,12 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 つまり1つの変数を固定し、もう1つの変数のパターンをすべて足せばいい。
 \textcolor{blue}{離散型}の場合、次式を例とする。
 \begin{equation}
-    P(X_1=x_1)=\sum_{x_2}\sum_{X_3}\cdots P(X_1 = x_1,X_2 = x_2, X_3 = x_3\cdots)\tag{2,16}
+    P(X_1=x_1)=\sum_{X_2}\sum_{X_3}\cdots P(X_1 = x_1,X_2 = x_2, X_3 = x_3\cdots)\tag{2,16}
 \end{equation}
 要は1つの確率変数を固定して後ひたすら足しているだけなのだ。
 \textcolor{blue}{連続型}の場合、次式を例とする。
 \begin{equation}
-    P(X_1\leq x_1,-\infty < X_2 < \infty \cdots) = \int_{-\infty}^x\int_{-\infty}^\infty\cdots f(x_1,c_2,\cdots)dx_1dx_2\cdots\tag{2,17}
+    P(X_1\leq x_1,-\infty < X_2 < \infty,-\infty < X_3 < \infty \cdots) = \int_{-\infty}^x\int_{-\infty}^\infty\int_{-\infty}^\infty\cdots f(x_2,x_3,\cdots)dx_2dx_3\cdots\tag{2,17}
 \end{equation}
 \subsection{共分散}
 2つの確率変数$X$と$Y$の関係を表す量として\textcolor{red}{共分散}を次式で定義する。
@@ -334,10 +335,11 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
     Cov[X,Y] ^2,\leq V[X]V[Y]\tag{2,21}
 \end{equation}
 \subsection{条件付密度関数}
-確率変数$X=x$、$Y=y$の時の\textcolor{red}{条件付密度関数}$f_{Y|X}(y|x)$を次式で定義する。
+確率変数$X=x$、$Y=y$の時の\textcolor{red}{条件付密度関数}$f_{Y|X}(y|x)$を次式で定義する。これは確率変数が2つの$f_{(X,Y)}(x,y)$で$X$が起きた時に$Y$が発生する確率である。
 \begin{equation}
-    f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}\tag{2,22}
+    f_{Y|X}(y|x)=\frac{f_{(X,Y)}(x,y)}{f_X(x)}\tag{2,22}
 \end{equation}
+なおここでの$f_X(x)$は周辺確率分布(2.3.3を参照)である。
 \section{確率分布}
 \subsection{\textcolor{blue}{離散型}確率分布}
 \subsubsection{一様分布}
@@ -355,7 +357,7 @@ $A$、$B$が同時に起こりえないことを\textcolor{red}{排反}と呼ぶ
 \end{equation}
 次に分散だが、
 \begin{eqnarray*}
-    V[X] &=& E[X^2]-(E[x])^2\\
+    V[X] &=& E[X^2]-(E[X])^2\\
     &=& \frac{n(n+1)(2n+1)}{6}p-(E[n])^2\\
     &=& \frac{2n^2+3n+1}{6}-\frac{n^2+2n+1}{4}\\
     &=& \frac{4n^2+6n+2}{12}-\frac{3n^2+6n+3}{12}\\
@@ -586,6 +588,31 @@ $Y$はもちろん確率変数となる。この時、この事象の組み合�
 同様に分散も(以下略)。
 
 冗談は置いといて期待値で示した奇関数の関係は理解しておいて損はない。
+
+以降で使用するが、平均$\mu=0$、分散$\sigma^2=1$である$N(0,1)$の正規分布を\textcolor{red}{標準正規分布}と呼ぶ。
+\subsubsection{ガンマ分布}
+指数分布を一般化させた分布。ある期間$\beta$ごとに平均して1回起こる現象が$\alpha$回起きるまでの期間$X$がガンマ分布に従うときに、ガンマ分布は次式で示される。ただし$\alpha,\beta>0$
+\begin{equation}
+    f(X) = \frac{1}{\beta^\alpha\Gamma(\alpha)}x^{\alpha-1}e^{-\frac{x}{\beta}}\tag{3,21}
+\end{equation}
+ただし$\Gamma$関数は次式で定義する。
+\begin{equation}
+    \Gamma(\alpha) = \int^\infty_0x^{\alpha-1}e^{-x}dx\tag{3,22}
+\end{equation}
+ここで$\alpha\in\mathbb{N}$の時の$\Gamma$関数は、
+\begin{equation}
+    \Gamma(\alpha) = (\alpha-1)!\tag{3,23}
+\end{equation}
+この関数の平均と分散は次式になる。
+\begin{equation}
+    E[X] = \frac{\alpha}{\beta}\tag{3,24}
+\end{equation}
+\begin{equation}
+    V[X] = \frac{\alpha}{\beta^2}\tag{3,25}
+\end{equation}
+ここでお気づきかはわからないが、$\alpha=1$のときに、$\lambda= \frac{1}{\beta}$とすると、指数分布と同じになる。ある期間に$\lambda$回起こると期間$\beta$に1回起こるとの関係を考えると当たり前の話ではある。
+\subsubsection{カイ2乗分布}
+確率変数$X_1,X_2,\cdots,X_n$が独立に標準正規分布に従うとする。ここで確率変数$X$を、$X=X_1^2+X_2^2+\cdots+X_n^2$とすると、
 \subsection{モーメント母関数}
 確率分布の性質を表現する手法として\textcolor{red}{モーメント母関数}$\psi(x)$を新たに定義する。
 \begin{equation}
