@@ -58,3 +58,4 @@
 \contentsline {section}{\numberline {4}中心極限定理}{22}{}%
 \contentsline {subsection}{\numberline {4.1}大数の定理}{22}{}%
 \contentsline {subsection}{\numberline {4.2}中心極限定理}{22}{}%
+\contentsline {section}{\numberline {5}信頼区間}{22}{}%
